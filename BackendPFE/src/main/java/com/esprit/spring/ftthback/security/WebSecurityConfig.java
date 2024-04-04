@@ -55,6 +55,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/test/**").permitAll()
                 .antMatchers("/api/password/request").permitAll() // Permettre l'accès à /api/password/request sans authentification
                 .antMatchers("/api/password/reset").permitAll() // Permettre l'accès à /api/password/reset sans authentification
+
+
                 .anyRequest().authenticated();
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
