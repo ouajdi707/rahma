@@ -1,4 +1,5 @@
 package com.esprit.spring.ftthback.models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,8 +41,8 @@ public class User implements Serializable {
     private String registerToken;
     @Column(name = "verification")
     private Long verification;
-    @Column(name="verify")
-    private boolean verify;
+    //@Column(name="verify")
+    //private boolean verify;
     @ManyToMany
     @JoinTable(name = "users_roles",
             joinColumns = { @JoinColumn(name = "user_Id") },
@@ -63,8 +64,10 @@ public class User implements Serializable {
         this.verification = (long) (Math.random() * 1000000);
     }
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Demande> demandes;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Reclamation> reclamations;
 
 

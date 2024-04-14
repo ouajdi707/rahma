@@ -31,7 +31,7 @@ public class Demande {
     @Enumerated(EnumType.STRING)
     @Column(name = "Etat")
     private Etat etat;
-@JsonIgnore
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

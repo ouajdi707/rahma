@@ -125,7 +125,7 @@ public class AuthController {
         userRepository.save(user);
         return ResponseEntity.ok(new MessageResponse("Utilisateur enregistré avec succès !"));
     }
-    @PostMapping("/verify")
+    /*@PostMapping("/verify")
     public ResponseEntity<?> verifyAccount(@RequestParam Long verification) {
         User user = userRepository.findByverification(verification);
         if (user != null){
@@ -136,6 +136,6 @@ public class AuthController {
             return ResponseEntity.ok(new MessageResponse("Incorrect code !"));
 
         }
-    }
+    }*/
 
 }

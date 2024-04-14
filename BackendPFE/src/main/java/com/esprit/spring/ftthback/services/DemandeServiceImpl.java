@@ -45,7 +45,7 @@ demandeRepository.deleteById(id);
     @Override
     public Demande updateDemande(Demande demande, Long id) {
         demande.setId(id);
-        return demandeRepository.getById(id);
+        return demandeRepository.save(demande);
     }
 
     @Override

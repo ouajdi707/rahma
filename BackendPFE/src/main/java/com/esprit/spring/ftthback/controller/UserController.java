@@ -3,6 +3,7 @@ import com.esprit.spring.ftthback.models.User;
 import com.esprit.spring.ftthback.repository.UserRepository;
 import com.esprit.spring.ftthback.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
@@ -17,7 +18,8 @@ public class UserController {
     UserServiceImpl userService;
     @Autowired
     private UserRepository userRepository;
-
+    @Autowired
+    PasswordEncoder encoder;
     @GetMapping("/retrieve-all-user")
     @ResponseBody
     public List<User> getAllUsers() {
@@ -39,7 +41,7 @@ public class UserController {
     @PostMapping("/Add-user")
     @ResponseBody
     public User addUser(@Valid @RequestBody User user){
-
+        user.setPassword(encoder.encode(user.getPassword()));
         return userRepository.save(user);
 
         //return userService.Adduser(user);
@@ -55,7 +57,6 @@ public class UserController {
     }
     @PutMapping(value="/modifyuser/{user-id}")
     public User modify(@PathVariable (name="user-id") Long id, @RequestBody User user) throws MessagingException {
-
         return userService.updateUser(user, id);
     }
 

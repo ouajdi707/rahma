@@ -13,6 +13,8 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
+@RequestMapping("/reclamation")
+
 public class ReclamationController {
 
     @Autowired
@@ -35,15 +37,16 @@ public class ReclamationController {
     public Reclamation findById(@PathVariable Long id) {
         return reclamationService.findById(id);
     }
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('USER') or hasRole('RESPONSABLE')")
     @PutMapping("/{id}")
     public Reclamation updateReclamation(@RequestBody Reclamation reclamation, @PathVariable Long id) {
         return reclamationService.updateReclamation(reclamation, id);
     }
     @PreAuthorize("hasRole('ADMIN') or hasRole('RESPONSABLE')")
     @PutMapping("/{id}/etat")
-    public Reclamation updateEtatReclamation(@RequestBody Etat etatReclamation, @PathVariable Long id) {
-        return reclamationService.updateEtatReclamation(etatReclamation, id);
+    public Reclamation updateEtatReclamation(@RequestBody String  etatReclamation, @PathVariable Long id) {
+        Etat etat = Etat.valueOf(etatReclamation);
+        return reclamationService.updateEtatReclamation(etat, id);
     }
     @GetMapping("/Get/{userId}")
     public List<Reclamation> findByUserId(@PathVariable Long userId) {
