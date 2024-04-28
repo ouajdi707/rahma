@@ -61,6 +61,7 @@ public class FtthBackApplication {
 				User user = new User();
 				user.setRoles(rolesAdmin);
 				user.setUsername("admin");
+				user.setEnable(true);
 				user.setPassword(bcrypt);
 				user.setEmail("rahma@gmail.com");
 				user.setRefnv("aaa");
