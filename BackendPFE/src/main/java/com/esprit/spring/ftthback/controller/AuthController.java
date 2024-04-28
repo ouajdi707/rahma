@@ -13,6 +13,8 @@ import com.esprit.spring.ftthback.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,6 +24,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +45,8 @@ public class AuthController {
     PasswordEncoder encoder;
     @Autowired
     JwtUtils jwtUtils;
+    @Autowired
+    JavaMailSender emailSender;
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         {
@@ -51,6 +57,7 @@ public class AuthController {
                 String jwt = jwtUtils.generateJwtToken(authentication);
 
                 UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+                if (userDetails.isEnabled()){
                 List<String> roles = userDetails.getAuthorities().stream()
                         .map(item -> item.getAuthority())
                         .collect(Collectors.toList());
@@ -60,6 +67,12 @@ public class AuthController {
                         userDetails.getUsername(),
                         userDetails.getEmail(),
                         roles));
+
+                }else{
+                    return ResponseEntity
+                            .status(HttpStatus.UNAUTHORIZED)
+                            .body(new MessageResponse("Erreur d'authentification : This user is not enable to login contact admin."));
+                }
             } catch (BadCredentialsException e) {
                 // Gérer l'erreur lorsque les informations d'identification sont incorrectes
                 return ResponseEntity
@@ -74,7 +87,7 @@ public class AuthController {
         }
     }
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) throws MessagingException {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
@@ -88,7 +101,6 @@ public class AuthController {
         // Create new user's account
         User user = new User( signUpRequest.getUsername(),
                 encoder.encode(signUpRequest.getPassword()),
-                signUpRequest.getCode(),
                 signUpRequest.getNumtel(),
                 signUpRequest.getRefnv(),
                 signUpRequest.getGrade(),
@@ -122,20 +134,41 @@ public class AuthController {
         }
 
         user.setRoles(roles);
+        user.setEnable(false);
+
         userRepository.save(user);
+        sendCodeVerification(user.getEmail(), user.getCode_verification());
+
         return ResponseEntity.ok(new MessageResponse("Utilisateur enregistré avec succès !"));
     }
-    /*@PostMapping("/verify")
-    public ResponseEntity<?> verifyAccount(@RequestParam Long verification) {
-        User user = userRepository.findByverification(verification);
+    @PostMapping("/verify")
+    public ResponseEntity<?> verifyAccount(@RequestParam Long code) {
+        User user = userRepository.findByCodeVerification(code);
         if (user != null){
-            user.setVerify(true);
+            user.setEnable(true);
             userRepository.save(user);
             return ResponseEntity.ok(new MessageResponse("Account verified !"));
         }else {
             return ResponseEntity.ok(new MessageResponse("Incorrect code !"));
-
         }
-    }*/
+    }
+    public void sendCodeVerification(String email, Long code_verification) throws MessagingException {
+        MimeMessage message = emailSender.createMimeMessage();
+        boolean multipart = true;
+        MimeMessageHelper helper = new MimeMessageHelper(message, multipart, "utf-8");
+
+
+        String htmlMsg = "<h3>Bonjour,</h3>"
+                + "<p>Your verification code is:\n" +
+                "\n" + code_verification +
+                "\n" +
+                "Your account can’t be accessed without this verification code, even if you didn’t submit this request.</p>"
+                +   "<p>Cordialement,</p>";
+
+        message.setContent(htmlMsg, "text/html");
+        helper.setTo(email);
+        helper.setSubject("verification code");
+        this.emailSender.send(message);
+    }
 
 }

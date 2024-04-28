@@ -33,7 +33,7 @@ public class SignupRequest {
 
     //admin
 @Column
-private String code;
+private Long code;
     @Column
     private String grade;
 
@@ -108,11 +108,5 @@ private String code;
     }
 
 
-    public String getCode() {
-        return code;
-    }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
 }

@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="e77ff585-b34c-41fb-af47-55bfd5f701dc" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackendPFE/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BackendPFE/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackendPFE/src/main/java/com/esprit/spring/ftthback/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackendPFE/src/main/java/com/esprit/spring/ftthback/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackendPFE/src/main/java/com/esprit/spring/ftthback/controller/DemandeControlleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackendPFE/src/main/java/com/esprit/spring/ftthback/controller/DemandeControlleur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackendPFE/src/main/java/com/esprit/spring/ftthback/controller/ReclamationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackendPFE/src/main/java/com/esprit/spring/ftthback/controller/ReclamationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackendPFE/src/main/java/com/esprit/spring/ftthback/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackendPFE/src/main/java/com/esprit/spring/ftthback/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackendPFE/src/main/java/com/esprit/spring/ftthback/services/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackendPFE/src/main/java/com/esprit/spring/ftthback/services/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackendPFE/src/main/java/com/esprit/spring/ftthback/payload/SignupRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackendPFE/src/main/java/com/esprit/spring/ftthback/payload/SignupRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackendPFE/src/main/java/com/esprit/spring/ftthback/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackendPFE/src/main/java/com/esprit/spring/ftthback/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackendPFE/src/main/java/com/esprit/spring/ftthback/services/UserDetailsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackendPFE/src/main/java/com/esprit/spring/ftthback/services/UserDetailsImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackendPFE/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BackendPFE/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -17,9 +23,24 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "achrefbenkacem96"
+  }
 }]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/ouajdi707/rahma.git",
+    "accountId": "5fc4d04d-c4ee-4a3b-8191-dcda42ade18b"
+  }
+}]]></component>
+  <component name="MavenRunner">
+    <option name="jreName" value="17" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2en3FHtTzrO1JbsT6K5IK2m76co" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -27,14 +48,43 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.FtthBackApplication.executor": "Run",
     "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.importing",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="FtthBackApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="ftth-back" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.esprit.spring.ftthback.FtthBackApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -44,6 +94,13 @@
       <option name="presentableId" value="Default" />
       <updated>1712526416321</updated>
       <workItem from="1712526418283" duration="222000" />
+      <workItem from="1714243040598" duration="25000" />
+      <workItem from="1714243107675" duration="49000" />
+      <workItem from="1714243178735" duration="143000" />
+      <workItem from="1714243343483" duration="829000" />
+      <workItem from="1714244273361" duration="219000" />
+      <workItem from="1714244885719" duration="937000" />
+      <workItem from="1714246299898" duration="2687000" />
     </task>
     <servers />
   </component>

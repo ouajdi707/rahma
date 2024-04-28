@@ -28,8 +28,7 @@ public class User implements Serializable {
     private String email;
     @Column
     private  String numtel;
-    @Column
-    private String code;
+
     @Column
     private String refnv;
     //admin
@@ -39,29 +38,38 @@ public class User implements Serializable {
     private String status;
     private String resetPasswordToken;
     private String registerToken;
-    @Column(name = "verification")
-    private Long verification;
-    //@Column(name="verify")
-    //private boolean verify;
+    @Column(name = "code_verification")
+    private Long codeVerification;
+
+    public Long getCode_verification() {
+        return codeVerification;
+    }
+
+    public void setCode_verification(Long code_verification) {
+        this.codeVerification = code_verification;
+    }
+
+    @Column(name="enable")
+    private boolean enable;
+
     @ManyToMany
     @JoinTable(name = "users_roles",
             joinColumns = { @JoinColumn(name = "user_Id") },
             inverseJoinColumns = { @JoinColumn(name = "role_Id") })
     private List<Role> roles;
 
-    public User(String username, String password, String code, String numtel, String refnv, String grade, String status, String email) {  this.username = username;
+    public User(String username, String password, String numtel, String refnv, String grade, String status, String email) {  this.username = username;
         this.password = password;
         this.email = email;
         this.numtel = numtel;
         this.refnv = refnv;
-        this.code=code;
         this.grade = grade;
         this.status = status;
     }
 
     @PrePersist
     public void generateCode() {
-        this.verification = (long) (Math.random() * 1000000);
+        this.codeVerification = (long) (Math.random() * 1000000);
     }
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnore
